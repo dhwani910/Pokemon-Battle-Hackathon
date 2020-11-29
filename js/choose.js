@@ -24,11 +24,11 @@ function startGame(index) {
        }
    } 
    console.log(game);
-   console.log(pokemon[index]);
-   cookies.set('game', JSON.stringify(game));
+   
+   Cookies.set('game', JSON.stringify(game));
 
 
-   window.location.href = "battle.html";
+   location.href = "battle.html";
 }
 
 // Map function to create a choice button for each Pokemon in the list
