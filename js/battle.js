@@ -68,26 +68,34 @@ log.map(function(line){
 let footer = document.querySelector('footer');
 
 
-if(fightAgain){
-    player.pokemon.attacks.map(function(attack, index){
-        let button = document.createElement('button');
-        button.innerText = attack.name;
-        button.addEventListener('click', function(){
-            player.move = index;
-            cpu.move = Math.floor(Math.random() * cpu.pokemon.attacks.length);
-            cookies.set('game', JSON.stringify(game));
-            location.reload();
-        });
-        footer.append(button);
-    });
-} else{
-    let button = document.createElement('button');
-    button.innerText = 'play a new round';
-    button.addEventListener('click', function(){
-        cookies.remove('game');
-        location.href = 'index.html';
-    });
-    footer.append(button);
-}
+// if(fightAgain){
+//     player.pokemon.attacks.map(function(attack, index){
+//         let button = document.createElement('button');
+//         button.innerText = attack.name;
+//         button.addEventListener('click', function(){
+//             player.move = index;
+//             cpu.move = Math.floor(Math.random() * cpu.pokemon.attacks.length);
+//             cookies.set('game', JSON.stringify(game));
+//             location.reload();
+//         });
+//         footer.append(button);
+//     });
+// } else{
+//     let button = document.createElement('button');
+//     button.innerText = 'play a new round';
+//     button.addEventListener('click', function(){
+//         cookies.remove('game');
+//         location.href = 'index.html';
+//     });
+//     footer.append(button);
+// }
 
+
+let playAgain = document.createElement('button');
+playAgain.innerText = 'Play Again';
+playAgain.addEventListener('click', function () {
+    Cookies.remove('game');
+    location.href = 'index.html';
+});
+footer.append(playAgain);
 
