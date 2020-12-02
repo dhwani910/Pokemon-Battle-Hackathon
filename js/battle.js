@@ -64,33 +64,31 @@ function battle(){
         document.querySelector('.player .health').innerHTML = playerHp;
         document.querySelector('.cpu .health').innerHTML = cpuHp;
 
-    }else if(player.health <= 0){
-            log.push('<strong> You have been Defeated </strong>');
-    }else if(cpu.health <= 0){
-            log.push('<strong> you are Victorious </strong>');
-    }else{
-        log.push('<strong> The match was a Draw </strong>');
+    }else if(playerHp <= 0){
+        document.querySelector('.statement').innerHTML = "cpu wins";
+            
+            
+    }else if(cpuHp <= 0){
+        document.querySelector('.statement').innerHTML = "player wins";
+           
+            
+    }else if(playerHp <= 0 && cpuHp <= 0){
+        document.querySelector('.statement').innerHTML = "Draw";
+     }else{
+         null
      }
 }
+
 
 let attackButton = document.querySelector('.game-button');
 attackButton.innerHTML = "attack";
 attackButton.addEventListener('click', function(){
     battle();
+    
 });
 
 
-if(playerHp <= 0){
-    let cpuResult = createElement('p');
-    cpuResult.innerText = "winner"
 
-    
-}else if (cpuHp <= 0){
-    let playerResult = createElement('p');
-    PlayerResult.innerText = "winner"
-}else{
-    "draw"
-}
 
 
 
@@ -103,12 +101,12 @@ if(playerHp <= 0){
 */
 
 document.querySelector('.player .name').innerHTML = PlayerName;
-document.querySelector('.player .health').innerHTML = player.health + '/' + playerHp;
+document.querySelector('.player .health').innerHTML = PlayerAttack + '/' + playerHp;
 document.querySelector('.player img').src = playerImage;
 
 
 document.querySelector('.cpu .name').innerHTML = cpuName;
-document.querySelector('.cpu .health').innerHTML = cpu.health + '/' + cpuHp;
+document.querySelector('.cpu .health').innerHTML = cpuAttack + '/' + cpuHp;
 document.querySelector('.cpu img').src = cpuImage;
 
 let battlelog = document.querySelector('.battlelog');
