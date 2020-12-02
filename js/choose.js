@@ -15,15 +15,19 @@ function startGame(index) {
    //setup the game
    const game = {
        player: {
-           pokemon: pokemon[index],
-           currentHealth: pokemon[index].hp
+           name: pokemon[index].name,
+           hp: pokemon[index].hp,
+           attack: pokemon[index].attack,
+           image: pokemon[index].image
        },
        cpu: {
-           pokemon: pokemon[randomNumber],
-           currentHealth: pokemon[randomNumber].hp
+           name: pokemon[randomNumber].name,
+           hp: pokemon[randomNumber].hp,
+           attack: pokemon[randomNumber].attack,
+           image: pokemon[randomNumber].image
        }
    } 
-   console.log(game);
+//    console.log(game);
    
    Cookies.set('game', JSON.stringify(game));
 

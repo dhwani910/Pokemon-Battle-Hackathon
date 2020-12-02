@@ -7,9 +7,24 @@
 
 
 let game = JSON.parse(Cookies.get('game'));
+
 let cpu = game.cpu;
+let cpuName = cpu.name;
+let cpuHp = Number(cpu.hp);
+let cpuAttack = Number(cpu.attack);
+let cpuImage = cpu.image;
+
+
 let player = game.player;
+let PlayerName = player.name;
+let playerHp = Number(player.hp);
+let PlayerAttack = Number(player.attack);
+let playerImage = player.image;
+
 let log = [];
+
+
+
 
 
 /*    
@@ -23,23 +38,46 @@ let log = [];
         - Save the updated game state (ie. player/cpu pokemon and health) to a cookie(s)
 */
 
-cpu.health -= player.pokemon.attack;
-log.push('player attacks and does ' + player.pokemon.attack + 'damage');
+// cpu.health -= player.pokemon.attack;
+// log.push('player attacks and does ' + player.pokemon.attack + 'damage');
 
 
-player.health -= cpu.pokemon.attack;
-log.push('cpu attacks and does ' + cpu.pokemon.attack + 'damage');
+// player.health -= cpu.pokemon.attack;
+// log.push('cpu attacks and does ' + cpu.pokemon.attack + 'damage');
 
-let fightAgain = false;
-if(player.health <= 0 && cpu.health <= 0){
-    log.push('<strong> The match was a Draw </strong>');
-}else if(player.health <= 0){
-    log.push('<strong> You have been Defeated </strong>');
-}else if(cpu.health <= 0){
-    log.push('<strong> you are Victorious </strong>');
-}else{
-    fightAgain = true;
+// let fightAgain = false;
+// if(player.health <= 0 && cpu.health <= 0){
+//     log.push('<strong> The match was a Draw </strong>');
+// }else if(player.health <= 0){
+//     log.push('<strong> You have been Defeated </strong>');
+// }else if(cpu.health <= 0){
+//     log.push('<strong> you are Victorious </strong>');
+// }else{
+//     fightAgain = true;
+// }
+
+
+function battle(){
+    if(playerHp > 0 && cpuHp > 0){
+        cpuHp = cpuHp - PlayerAttack;
+        playerHp = playerHp - cpuAttack;
+        document.querySelector('.player .health').innerHTML = playerHp;
+        document.querySelector('.cpu .health').innerHTML = cpuHp;
+
+    }else if(player.health <= 0){
+            log.push('<strong> You have been Defeated </strong>');
+    }else if(cpu.health <= 0){
+            log.push('<strong> you are Victorious </strong>');
+    }else{
+        log.push('<strong> The match was a Draw </strong>');
+     }
 }
+
+let attackButton = document.querySelector('.game-button');
+attackButton.innerHTML = "attack";
+attackButton.addEventListener('click', function(){
+    battle();
+});
 
 
 
@@ -51,16 +89,17 @@ if(player.health <= 0 && cpu.health <= 0){
     - Otherwise, present the user with a button to refresh the page and complete the next battle sequence.
 */
 
-document.querySelector('.player .name').innerHTML = player.pokemon.name;
-document.querySelector('.player .health').innerHTML = player.health + '/' + player.pokemon.hp;
-document.querySelector('.player img').src = player.pokemon.image;
+document.querySelector('.player .name').innerHTML = PlayerName;
+document.querySelector('.player .health').innerHTML = player.health + '/' + playerHp;
+document.querySelector('.player img').src = playerImage;
 
 
-document.querySelector('.cpu .name').innerHTML = cpu.pokemon.name;
-document.querySelector('.cpu .health').innerHTML = cpu.health + '/' + cpu.pokemon.hp;
-document.querySelector('.cpu img').src = cpu.pokemon.image;
+document.querySelector('.cpu .name').innerHTML = cpuName;
+document.querySelector('.cpu .health').innerHTML = cpu.health + '/' + cpuHp;
+document.querySelector('.cpu img').src = cpuImage;
 
 let battlelog = document.querySelector('.battlelog');
+
 log.map(function(line){
     battlelog.innerHTML += '<li>' + line + '</li>';
 });
