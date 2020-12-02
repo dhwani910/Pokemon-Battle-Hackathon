@@ -63,6 +63,11 @@ function battle(){
         playerHp = playerHp - cpuAttack;
         document.querySelector('.player .health').innerHTML = playerHp;
         document.querySelector('.cpu .health').innerHTML = cpuHp;
+        game.player = player;
+        player.hp = playerHp;
+        game.cpu = cpu;
+        cpu.hp = cpuHp;
+        Cookies.set('game', JSON.stringify(game));
 
     }else if(playerHp <= 0){
         document.querySelector('.statement').innerHTML = "cpu wins";
@@ -84,6 +89,9 @@ let attackButton = document.querySelector('.game-button');
 attackButton.innerHTML = "attack";
 attackButton.addEventListener('click', function(){
     battle();
+    cookies.set('game', JSON.stringify(game));
+            location.reload();
+    
     
 });
 
