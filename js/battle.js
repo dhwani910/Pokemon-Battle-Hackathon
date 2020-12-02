@@ -80,6 +80,19 @@ attackButton.addEventListener('click', function(){
 });
 
 
+if(playerHp <= 0){
+    let cpuResult = createElement('p');
+    cpuResult.innerText = "winner"
+
+    
+}else if (cpuHp <= 0){
+    let playerResult = createElement('p');
+    PlayerResult.innerText = "winner"
+}else{
+    "draw"
+}
+
+
 
 /*
     - Use selectors to target and fill in the img, .name, and .health elements on battle.html
